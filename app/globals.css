@@ -2,31 +2,6 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-@theme {
-  /* Reset any wildcard breakpoints */
-  --breakpoint-*: initial;
-
-  /* Mobile: 30rem = 450px */
-  --breakpoint-mobile: 30rem;
-
-  /* Tablet: 36rem = 576px */
-  --breakpoint-tablet: 36rem;
-
-  /* Small laptop / Tablet landscape: 48rem = 768px */
-  --breakpoint-small-laptop: 48rem;
-
-  /* Laptop: 64rem = 1024px */
-  --breakpoint-laptop: 64rem;
-
-  /* Desktop: 75rem = 1200px */
-  --breakpoint-desktop: 75rem;
-
-  /* Large desktop / 2K monitors: 87.5rem = 1400px */
-  --breakpoint-desktop-2: 87.5rem;
-
-  /* Ultra-wide screens / 4K monitors: 100rem = 1600px */
-  --breakpoint-desktop-4k: 100rem;
-}
 
 @theme inline {
   --color-background: var(--background);
@@ -66,6 +41,23 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Reset any wildcard breakpoints */
+  --breakpoint-*: initial;
+  /* Mobile: 30rem = 450px */
+  --breakpoint-xs: 30rem;
+  /* Tablet: 36rem = 576px */
+  --breakpoint-sm: 36rem;
+  /* Small laptop / Tablet landscape: 48rem = 768px */
+  --breakpoint-md: 48rem;
+  /* Laptop: 64rem = 1024px */
+  --breakpoint-lg: 64rem;
+  /* Desktop: 75rem = 1200px */
+  --breakpoint-xl: 75rem;
+  /* Large desktop / 2K monitors: 87.5rem = 1400px */
+  --breakpoint-2xl: 87.5rem;
+  /* Ultra-wide screens / 4K monitors: 100rem = 1600px */
+  --breakpoint-3xl: 100rem;
 }
 
 :root {
