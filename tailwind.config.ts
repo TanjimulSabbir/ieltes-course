@@ -5,7 +5,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Define your custom global colors here
         primary: "#1a73e8",
         gray: "#6B7280",
         grayLight: "#4B5563",
@@ -16,6 +15,13 @@ const config: Config = {
         green: "#1DAB55",
         greenText: "#1CAB55",
       },
+    },
+    screens: {
+      sm: "500px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1200px",
+      "2xl": "1400px",
     },
   },
   plugins: [],
