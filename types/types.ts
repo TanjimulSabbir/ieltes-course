@@ -21,7 +21,7 @@ export interface Data {
   checklist: Checklist[];
   seo: any[];
   cta_text: CtaText;
-  sections: Section[];
+  sections: AllSections[];
   is_cohort_based_course: boolean;
   secondary_cta_group: any[];
   delivery_method: string;
@@ -55,28 +55,48 @@ export interface CtaText {
   value: string;
 }
 
-// Generic Section interface that accepts type T for values
-export interface Section<T = unknown> {
-  type: string;
+// Generic BaseSection interface
+export interface BaseSection<VALUE, TYPE extends string> {
+  type: TYPE;
   name: string;
   description: string;
   bg_color: string;
   order_idx: number;
-  values: T[];
+  values: VALUE[];
 }
 
-// Now define each specific section like this:
+// Specific section types:
+
+export type AllSections =
+  | OffersSection
+  | InstructorsSection
+  | FeaturesSection
+  | GroupJoinEngagementSection
+  | PointersSection
+  | AboutSection
+  | FeatureExplanationsSection
+  | TestimonialSection
+  | FrequentlyAskedQuestionSection
+  | FreeItemsSection
+  | CertificateSection
+  | BundleCertificateSection
+  | RequirementSection
+  | HowToPaySection
+  | ContentPreviewSection;
+
+// Section value interfaces:
 
 export interface OfferValue {
   background_color: string;
   background_img: string;
   checklist_text_color: string;
-  end_at: string;
+  end_at: string; // ISO string
   id: string;
-  start_at: string;
+  start_at: string; // ISO string
   template: string;
   text: string;
 }
+
 export interface InstructorValue {
   description: string; // HTML string
   has_instructor_page: boolean;
@@ -85,6 +105,7 @@ export interface InstructorValue {
   short_description: string;
   slug: string;
 }
+
 export interface FeatureValue {
   icon: string;
   id: string;
@@ -111,13 +132,13 @@ export interface GroupJoinEngagementValue {
   title_color: string;
   top_left_icon_img: string;
 }
+
 export interface PointerValue {
   color: string;
   icon: string;
   id: string;
   text: string;
 }
-export interface ContentPreviewValue {}
 export interface AboutValue {
   description: string; // HTML string
   icon: string;
@@ -149,19 +170,29 @@ export interface FrequentlyAskedQuestionValue {
   question: string;
 }
 
-export type OffersSection = Section<OfferValue>;
-export type InstructorsSection = Section<InstructorValue>;
-export type FeaturesSection = Section<FeatureValue>;
-export type GroupJoinEngagementSection = Section<GroupJoinEngagementValue>;
-export type PointersSection = Section<PointerValue>;
-export type EmptyValuesSection = Section<[]>;
-export type TestimonialSection = Section<TestimonialValue>;
+// Specific typed sections
+export type OffersSection = BaseSection<OfferValue, "offers">;
+export type InstructorsSection = BaseSection<InstructorValue, "instructors">;
+export type FeaturesSection = BaseSection<FeatureValue, "features">;
+export type GroupJoinEngagementSection = BaseSection<
+  GroupJoinEngagementValue,
+  "group_join_engagement"
+>;
+export type PointersSection = BaseSection<PointerValue, "pointers">;
 
-// Specific types for each section
-export type FreeItemsSection = EmptyValuesSection & { type: "free_items" };
-export type CertificateSection = EmptyValuesSection & { type: "certificate" };
-export type BundleCertificateSection = EmptyValuesSection & {
-  type: "bundle_certificate";
-};
-export type RequirementSection = EmptyValuesSection & { type: "requirements" };
-export type HowToPaySection = EmptyValuesSection & { type: "how_to_pay" };
+export type AboutSection = BaseSection<AboutValue, "about">;
+export type FeatureExplanationsSection = BaseSection<
+  FeatureExplanationsValue,
+  "feature_explanations"
+>;
+export type TestimonialSection = BaseSection<TestimonialValue, "testimonials">;
+export type FrequentlyAskedQuestionSection = BaseSection<
+  FrequentlyAskedQuestionValue,
+  "faq"
+>;
+export type ContentPreviewSection = BaseSection<[], "content_preview">;
+export type FreeItemsSection = BaseSection<[], "free_items">;
+export type CertificateSection = BaseSection<[], "certificate">;
+export type BundleCertificateSection = BaseSection<[], "bundle_certificate">;
+export type RequirementSection = BaseSection<[], "requirements">;
+export type HowToPaySection = BaseSection<[], "how_to_pay">;
