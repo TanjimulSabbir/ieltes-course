@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { PlayCircle,Play } from "lucide-react";
 import Image from "next/image";
-import { PlayCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs, Navigation } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/thumbs";
 import "swiper/css/navigation";
+import "swiper/css/thumbs";
 import "../../../styles/custom_swiper.css"; // Custom styles for Swiper
 
 type Media = {
@@ -22,6 +22,7 @@ export default function MediaCarousel({ media }: { media: Media[] }) {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [mainSwiper, setMainSwiper] = useState<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
 
   // Auto-scroll thumbnails to active index
   useEffect(() => {
@@ -30,52 +31,68 @@ export default function MediaCarousel({ media }: { media: Media[] }) {
     }
   }, [activeIndex, thumbsSwiper]);
 
-  const renderMainContent = (item: Media, idx: number) => {
-    const isVideo = item.resource_type === "video";
-    if (isVideo) {
-      // Render iframe only if active slide
-      if (idx === activeIndex) {
-        return (
-          <div className="relative w-full h-[250px] bg-black rounded-md overflow-hidden">
-            <iframe
-              key={idx}
-              className="w-full h-full"
-              src={`https://www.youtube.com/embed/${item.resource_value}?autoplay=1`}
-              title={`video-${idx}`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-            
-            />
-          </div>
-        );
-      } else {
-        // Render thumbnail placeholder so UI doesn't jump
-        return (
-          <div className="relative w-full h-[250px] bg-black rounded-md overflow-hidden">
-            <Image
-              src={item.thumbnail_url || ""}
-              alt={`video-thumb-${idx}`}
-              width={700}
-              height={400}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        );
-      }
-    } else {
-      return (
-        <div className="relative w-full h-[250px] rounded-md overflow-hidden bg-black">
-          <Image
-            src={item.resource_value}
-            alt={`media-${idx}`}
-            width={700}
-            height={400}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      );
-    }
-  };
+ const renderMainContent = (item: Media, idx: number) => {
+   const isVideo = item.resource_type === "video";
+
+   if (isVideo) {
+     if (idx === activeIndex) {
+       return (
+         <div
+           className="relative w-full h-[250px] bg-black overflow-hidden flex items-center justify-center cursor-pointer"
+           onClick={() => setPlayingIndex(idx)}
+           >
+
+           {playingIndex === idx ? (
+             <iframe
+               key={idx}
+               className="w-full h-full"
+               src={`https://www.youtube.com/embed/${item.resource_value}?autoplay=1`}
+               title={`video-${idx}`}
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+               allowFullScreen
+             />
+           ) : (
+             <>
+               <Image
+                 src={item.thumbnail_url || "/placeholder.png"} // safer fallback
+                 alt={`video-thumb-${idx}`}
+                 width={700}
+                 height={400}
+                 className="w-full h-full object-cover"
+               />
+               <Play className="absolute w-14 h-14 border-4 border-black/10 text-green-500 bg-white rounded-full p-3 shadow-xl" />
+             </>
+           )}
+         </div>
+       );
+     } else {
+       return (
+         <div className="relative w-full h-[250px] bg-black overflow-hidden">
+           <Image
+             src={item.thumbnail_url || "/placeholder.png"} // fallback to prevent empty src error
+             alt={`video-thumb-${idx}`}
+             width={700}
+             height={400}
+             className="w-full h-full object-cover"
+           />
+         </div>
+       );
+     }
+   } else {
+     // ✅ This was missing before
+     return (
+       <div className="relative w-full h-[250px] overflow-hidden bg-black">
+         <Image
+           src={item.resource_value || "/placeholder.png"} // for images, use resource_value
+           alt={`media-${idx}`}
+           width={700}
+           height={400}
+           className="w-full h-full object-cover"
+         />
+       </div>
+     );
+   }
+ };
 
   return (
     <div className="w-full">
@@ -84,7 +101,10 @@ export default function MediaCarousel({ media }: { media: Media[] }) {
         onSwiper={setMainSwiper}
         spaceBetween={10}
         navigation
-        onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        onSlideChange={(swiper) => {
+          setActiveIndex(swiper.activeIndex);
+          setPlayingIndex(null); // stop all playing videos on swipe
+        }}
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
@@ -115,7 +135,7 @@ export default function MediaCarousel({ media }: { media: Media[] }) {
           return (
             <SwiperSlide
               key={`thumb-${idx}`}
-              className={`!w-[60px] !h-[40px] rounded-md overflow-hidden border-2 transition-all ${
+              className={`!w-[60px] !h-[40px] rounded overflow-hidden border-2 transition-all ${
                 isActive ? "border-green-500" : "border-transparent"
               } cursor-pointer`}
               onClick={() => {
@@ -140,7 +160,7 @@ export default function MediaCarousel({ media }: { media: Media[] }) {
                 }
               }}
             >
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full ">
                 <Image
                   src={imageUrl || ""}
                   alt={`thumb-${idx}`}

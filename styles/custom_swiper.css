@@ -2,12 +2,12 @@
 .swiper-button-next,
 .swiper-button-prev {
   background-color: white !important;
-  padding: 0.75rem; /* p-3 = 12px */
+  padding: 10px; /* p-3 = 12px */
   border-radius: 9999px; /* rounded-full */
-  top: 50%;
-  width: 40px;
-  height: 40px;
-  color: black !important; /* arrow color */
+  top: 60%;
+  width: 25px;
+  height: 25px;
+  color: rgb(0, 0, 0) !important; /* arrow color */
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
   transform: translateY(-50%);
   transition: background-color 0.3s ease;
@@ -23,6 +23,6 @@
 /* Optionally, make arrow icons bigger */
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  font-size: 20px;
+  font-size: 12px;
   font-weight: bold;
 }
