@@ -1,13 +1,13 @@
-export interface Root {
+export interface RootResponse {
   code: number;
-  data: Data;
+  data: CourseData;
   error: any[];
   message: string;
   payload: any[];
   status_code: number;
 }
 
-export interface Data {
+export interface CourseData {
   slug: string;
   id: number;
   title: string;

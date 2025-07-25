@@ -1,11 +1,11 @@
 import useSWR from "swr";
 import { fetcher } from "@/lib/api";
-import type { CourseData } from "@/types/course";
+import { RootResponse } from "@/types/types";
 
-export const useCourseData = (lang: "en" | "bn" = "bn") => {
+export const useCourseData = (lang: "en" | "bn" = "en") => {
   const endpoint = `/products/ielts-course?lang=${lang}`;
 
-  const { data, error, isLoading } = useSWR<CourseData>(endpoint, fetcher);
+  const { data, error, isLoading } = useSWR<RootResponse>(endpoint, fetcher);
 
   return {
     data,
