@@ -49,7 +49,7 @@ export default function HashNavbar() {
   };
 
   return (
-    <div className="relative container order-2 flex-1 mx-auto md:order-1 md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_388px)]">
+    <div className="relative container w-full order-2 flex-1 mx-auto lg:order-1 lg:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_388px)]">
       {/* Arrows */}
       <div className="absolute inset-0 flex items-center justify-between w-full">
         <button
