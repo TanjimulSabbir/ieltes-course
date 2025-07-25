@@ -2,6 +2,7 @@
 import { useCourseData } from "@/hooks/useCourseData";
 import React from "react";
 import HeroSection from "../shared/header/header";
+import HashNavbar from "../shared/HashNavbar/HashNavbar";
 
 export default function landing() {
   const { data, error, isLoading } = useCourseData("bn");
@@ -13,10 +14,10 @@ export default function landing() {
   const { title, description, media } = data?.data;
   return (
     <div className="">
-          <HeroSection props={{ title, description,media }} />
-          <div className="order-2 flex-1 md:order-1 md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
-              
-          </div>
+      <HeroSection props={{ title, description, media }} />
+      <div className="order-2 flex-1 md:order-1 w-[1200px] md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
+        <HashNavbar />
+      </div>
     </div>
   );
 }
