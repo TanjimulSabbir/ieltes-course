@@ -24,9 +24,9 @@ export default function landing() {
   const sectionsMap = mapSectionsByType(sections);
 
   return (
-    <div>
+    <>
       <HeroSection props={{ title, description, media }} />
-      <div className="container max-w-screen-xl relative h-screen mx-auto">
+      <div className="container max-w-screen-xl horizantal-padding relative h-screen mx-auto">
         <div className="md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
           <HashNavbar />
           <CourseInstructor props={{ data: sectionsMap.instructors! }} />
@@ -39,6 +39,6 @@ export default function landing() {
         </div>
         <div className="w-full md:max-w-[330px] lg:max-w-[448px]"></div>
       </div>
-    </div>
+    </>
   );
 }

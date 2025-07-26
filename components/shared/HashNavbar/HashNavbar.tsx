@@ -57,13 +57,13 @@ export default function HashNavbar() {
       {/* Scroll Arrows */}
       <div className="absolute left-0 right-0 flex justify-between items-center h-full px-1 z-30 pointer-events-none">
         <button
-          className="-ml-6 pointer-events-auto cursor-pointer bg-white text-black rounded-full p-2 shadow"
+          className="lg:-ml-6 pointer-events-auto cursor-pointer bg-white text-black rounded-full p-2 shadow"
           onClick={() => scrollTabs("left")}
         >
           <ChevronLeft />
         </button>
         <button
-          className="-mr-6 pointer-events-auto cursor-pointer bg-white text-black rounded-full p-2 shadow"
+          className="lg:-mr-6 pointer-events-auto cursor-pointer bg-white text-black rounded-full p-2 shadow"
           onClick={() => scrollTabs("right")}
         >
           <ChevronRight />
