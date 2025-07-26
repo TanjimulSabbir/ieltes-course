@@ -5,6 +5,7 @@ import HeroSection from "../shared/header/header";
 import HashNavbar from "../shared/HashNavbar/HashNavbar";
 import CourseInstructor from "../CourseInstructor";
 import { mapSectionsByType } from "@/data/data";
+import HowToCourseOrganized from "../HowToCourseOrganized";
 
 export default function landing() {
   const { data, error, isLoading } = useCourseData("bn");
@@ -23,9 +24,8 @@ export default function landing() {
       <div className="container max-w-screen-xl relative h-screen mx-auto">
         <div className="md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
           <HashNavbar />
-          <CourseInstructor
-            props={{ data: sectionsMap.instructors! }}
-          />
+          <CourseInstructor props={{ data: sectionsMap.instructors! }} />
+          <HowToCourseOrganized props={{ data: sectionsMap.features! }} />
         </div>
         <div className="w-full md:max-w-[330px] lg:max-w-[448px]"></div>
       </div>

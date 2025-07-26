@@ -8,7 +8,7 @@ export default function CourseInstructor({
 }) {
   return (
     <div id="instructors">
-      <div className="mb-7 xs:bg-[#EEF2F4] xs:pt-2">
+      <div className="mb-7 xs:pt-2">
         <div className="pt-4 pb-2 bg-white">
           <h2 className="mb-4 text-xl font-semibold md:text-2xl">
             কোর্স ইন্সট্রাক্টর
