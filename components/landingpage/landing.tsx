@@ -28,7 +28,7 @@ export default function landing() {
           <HashNavbar />
           <CourseInstructor props={{ data: sectionsMap.instructors! }} />
           <HowToCourseOrganized props={{ data: sectionsMap.features! }} />
-          <GroupJoinEngagement  props={{ data: sectionsMap.group_join_engagement! }}
+          <GroupJoinEngagement  props={{ data: sectionsMap.group_join_engagement! }}/>
           <WhatYouWillLearn  props={{ data: sectionsMap.pointers! }}/>
         </div>
         <div className="w-full md:max-w-[330px] lg:max-w-[448px]"></div>
