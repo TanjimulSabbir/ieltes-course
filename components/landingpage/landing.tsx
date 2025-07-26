@@ -9,6 +9,7 @@ import HowToCourseOrganized from "../HowToCourseOrganized";
 import GroupJoinEngagement from "../GroupJoinEngagement";
 import WhatYouWillLearn from "../WhatYouWillLearn";
 import About from "../About";
+import CourseExclusiveFeatures from "../CourseExclusiveFeatures";
 
 export default function landing() {
   const { data, error, isLoading } = useCourseData("bn");
@@ -32,6 +33,7 @@ export default function landing() {
           <GroupJoinEngagement  props={{ data: sectionsMap.group_join_engagement! }}/>
           <WhatYouWillLearn  props={{ data: sectionsMap.pointers! }}/>
           <About  props={{ data: sectionsMap.about! }}/>
+          <CourseExclusiveFeatures  props={{ data: sectionsMap.feature_explanations! }}/>
         </div>
         <div className="w-full md:max-w-[330px] lg:max-w-[448px]"></div>
       </div>
