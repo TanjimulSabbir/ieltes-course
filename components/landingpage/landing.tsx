@@ -6,6 +6,8 @@ import HashNavbar from "../shared/HashNavbar/HashNavbar";
 import CourseInstructor from "../CourseInstructor";
 import { mapSectionsByType } from "@/data/data";
 import HowToCourseOrganized from "../HowToCourseOrganized";
+import GroupJoinEngagement from "../GroupJoinEngagement";
+import WhatYouWillLearn from "../WhatYouWillLearn";
 
 export default function landing() {
   const { data, error, isLoading } = useCourseData("bn");
@@ -26,6 +28,8 @@ export default function landing() {
           <HashNavbar />
           <CourseInstructor props={{ data: sectionsMap.instructors! }} />
           <HowToCourseOrganized props={{ data: sectionsMap.features! }} />
+          <GroupJoinEngagement  props={{ data: sectionsMap.group_join_engagement! }}
+          <WhatYouWillLearn  props={{ data: sectionsMap.pointers! }}/>
         </div>
         <div className="w-full md:max-w-[330px] lg:max-w-[448px]"></div>
       </div>
