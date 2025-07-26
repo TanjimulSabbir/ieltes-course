@@ -1,0 +1,28 @@
+/* Make arrows white background, rounded-full, padded */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: white !important;
+  padding: 10px; /* p-3 = 12px */
+  border-radius: 9999px; /* rounded-full */
+  top: 60%;
+  width: 25px;
+  height: 25px;
+  color: rgb(0, 0, 0) !important; /* arrow color */
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+  z-index: 20;
+}
+
+/* On hover, slightly darker background */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #f0f0f0 !important;
+}
+
+/* Optionally, make arrow icons bigger */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 12px;
+  font-weight: bold;
+}
