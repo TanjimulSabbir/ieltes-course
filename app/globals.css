@@ -53,7 +53,7 @@
   /* Laptop: 64rem = 1024px */
   --breakpoint-lg: 64rem;
   /* Desktop: 75rem = 1200px */
-  --breakpoint-xl: 75rem;
+  --breakpoint-xl: 80rem;
   /* Large desktop / 2K monitors: 87.5rem = 1400px */
   --breakpoint-2xl: 87.5rem;
   /* Ultra-wide screens / 4K monitors: 100rem = 1600px */

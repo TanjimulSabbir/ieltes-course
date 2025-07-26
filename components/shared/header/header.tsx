@@ -20,10 +20,10 @@ export default function HeroSection({
       <div
         id="skills-landing"
         data-label="div#skills-landing"
-        className="container max-w-screen-xl mx-auto flex flex-col justify-center min-h-[300px] md:min-h-[300px] p-6"
+        className="container max-w-screen-xl mx-auto flex flex-col justify-center min-h-[300px] md:min-h-[300px]"
       >
         <div className="container relative flex flex-col gap-4 md:flex-row md:gap-12 pb-6 md:py-10 min-h-[300px]">
-          <div className="order-1 flex flex-col justify-center flex-1 md:order-1  md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
+          <div className="order-1 flex flex-col justify-center flex-1 md:order-1 md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
             <h1
               className="text-white mb-2 text-[21px] font-semibold md:text-4xl"
               data-label="h1.text-white"

@@ -66,7 +66,6 @@ export interface BaseSection<VALUE, TYPE extends string> {
 }
 
 // Specific section types:
-
 export type AllSections =
   | OffersSection
   | InstructorsSection

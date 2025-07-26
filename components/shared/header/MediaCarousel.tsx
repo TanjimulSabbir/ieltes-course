@@ -10,13 +10,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "../../../styles/custom_swiper.css"; // Custom styles for Swiper
+import { Media } from "@/types/types";
 
-type Media = {
-  name: string;
-  resource_type: "image" | "video";
-  resource_value: string;
-  thumbnail_url?: string;
-};
 
 export default function MediaCarousel({ media }: { media: Media[] }) {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);

@@ -49,17 +49,17 @@ export default function HashNavbar() {
   };
 
   return (
-    <div className="relative container w-full order-2 flex-1 mx-auto lg:order-1 lg:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_388px)]">
+    <div className="relative">
       {/* Arrows */}
       <div className="absolute inset-0 flex items-center justify-between w-full">
         <button
-          className="-ml-10 z-10 p-2 bg-gray-300 rounded-full shadow-2xl cursor-pointer"
+          className="-ml-5 z-10 p-2 bg-gray-300 rounded-full shadow-2xl cursor-pointer"
           onClick={() => scrollTabs("left")}
         >
           <ChevronLeft />
         </button>
         <button
-          className="-mr-10 z-50 p-2 bg-gray-300 rounded-full shadow-2xl cursor-pointer"
+          className="-mr-5 z-50 p-2 bg-gray-300 rounded-full shadow-2xl cursor-pointer"
           onClick={() => scrollTabs("right")}
         >
           <ChevronRight />
@@ -69,17 +69,17 @@ export default function HashNavbar() {
       {/* Scrollable Tab List */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto scrollbar-hide space-x-4 py-3 scroll-smooth"
+        className="flex overflow-x-auto scrollbar-hide mx-4 space-x-2 py-3 scroll-smooth"
       >
         {tabItems.map((tab) => (
           <button
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
             className={cn(
-              "whitespace-nowrap px-2 py-2 text-xs font-medium rounded-md ",
+              "whitespace-nowrap px-2 py-2 text-xs",
               activeTab === tab.id
                 ? "bg-green-500 text-white"
-                : "bg-gray-50 text-gray-800 hover:bg-gray-300 cursor-pointer"
+                : "text-gray-800 hover:bg-gray-300 cursor-pointer"
             )}
           >
             {tab.title}
