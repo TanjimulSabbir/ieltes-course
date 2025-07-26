@@ -10,6 +10,7 @@ import GroupJoinEngagement from "../GroupJoinEngagement";
 import WhatYouWillLearn from "../WhatYouWillLearn";
 import About from "../About";
 import CourseExclusiveFeatures from "../CourseExclusiveFeatures";
+import Testimonials from "../Testimonials";
 
 export default function landing() {
   const { data, error, isLoading } = useCourseData("bn");
@@ -34,6 +35,7 @@ export default function landing() {
           <WhatYouWillLearn  props={{ data: sectionsMap.pointers! }}/>
           <About  props={{ data: sectionsMap.about! }}/>
           <CourseExclusiveFeatures  props={{ data: sectionsMap.feature_explanations! }}/>
+          <Testimonials  props={{ data: sectionsMap.testimonials! }}/>
         </div>
         <div className="w-full md:max-w-[330px] lg:max-w-[448px]"></div>
       </div>

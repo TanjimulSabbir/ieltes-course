@@ -195,3 +195,5 @@ export type CertificateSection = BaseSection<[], "certificate">;
 export type BundleCertificateSection = BaseSection<[], "bundle_certificate">;
 export type RequirementSection = BaseSection<[], "requirements">;
 export type HowToPaySection = BaseSection<[], "how_to_pay">;
+
+

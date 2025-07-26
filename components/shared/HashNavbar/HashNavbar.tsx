@@ -1,22 +1,23 @@
 "use client";
+
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const tabItems = [
-  { title: "কোর্স ইন্সট্রাক্টর", id: "instructor" },
-  { title: "কোর্সটি যেভাবে সাজানো হয়েছে", id: "structure" },
-  { title: "কোর্সটি করে যা শিখবেন", id: "learning" },
-  { title: "কোর্স সম্পর্কে বিস্তারিত", id: "details" },
-  { title: "কোর্স এক্সক্লুসিভ ফিচার", id: "features" },
+  { title: "কোর্স ইন্সট্রাক্টর", id: "instructors" },
+  { title: "কোর্সটি যেভাবে সাজানো হয়েছে", id: "features" },
+  { title: "কোর্সটি করে যা শিখবেন", id: "pointers" },
+  { title: "কোর্স সম্পর্কে বিস্তারিত", id: "about" },
+  { title: "কোর্স এক্সক্লুসিভ ফিচার", id: "feature_explanations" },
   { title: "এই কোর্সের সাথে ফ্রি পাচ্ছেন–", id: "freebies" },
-  { title: "শিক্ষার্থীরা যা বলছে", id: "reviews" },
+  { title: "শিক্ষার্থীরা যা বলছে", id: "testimonials" },
   { title: "সচরাচর জিজ্ঞাসা", id: "faq" },
 ];
 
 export default function HashNavbar() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<string>("instructors");
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -24,7 +25,9 @@ export default function HashNavbar() {
       setActiveTab(currentId);
     };
 
+    // Initial hash check
     handleHashChange();
+
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
@@ -32,6 +35,7 @@ export default function HashNavbar() {
   const scrollTabs = (direction: "left" | "right") => {
     const container = scrollRef.current;
     if (!container) return;
+
     const scrollAmount = 200;
     container.scrollBy({
       left: direction === "left" ? -scrollAmount : scrollAmount,
@@ -42,44 +46,44 @@ export default function HashNavbar() {
   const handleTabClick = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
       setActiveTab(id);
-      history.pushState(null, "", `#${id}`);
+      history.replaceState(null, "", `#${id}`);
     }
   };
 
   return (
-    <div className="relative">
-      {/* Arrows */}
-      <div className="absolute inset-0 flex items-center justify-between w-full">
+    <div className="sticky top-0 z-50 bg-white shadow-md w-full">
+      {/* Scroll Arrows */}
+      <div className="absolute left-0 right-0 flex justify-between items-center h-full px-1 z-30 pointer-events-none">
         <button
-          className="-ml-5 z-10 p-2 bg-gray-300 rounded-full shadow-2xl cursor-pointer"
+          className="-ml-6 pointer-events-auto cursor-pointer bg-white text-black rounded-full p-2 shadow"
           onClick={() => scrollTabs("left")}
         >
           <ChevronLeft />
         </button>
         <button
-          className="-mr-5 z-50 p-2 bg-gray-300 rounded-full shadow-2xl cursor-pointer"
+          className="-mr-6 pointer-events-auto cursor-pointer bg-white text-black rounded-full p-2 shadow"
           onClick={() => scrollTabs("right")}
         >
           <ChevronRight />
         </button>
       </div>
 
-      {/* Scrollable Tab List */}
+      {/* Scrollable Tabs */}
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto scrollbar-hide mx-4 space-x-2 py-3 scroll-smooth"
+        className="flex overflow-x-auto scrollbar-hide space-x-2 px-8 py-3 scroll-smooth"
       >
         {tabItems.map((tab) => (
           <button
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
             className={cn(
-              "whitespace-nowrap px-2 py-2 text-xs",
+              "whitespace-nowrap text-sm px-4 py-2 rounded-md cursor-pointer transition duration-200 border border-gray-300",
               activeTab === tab.id
                 ? "bg-green-500 text-white"
-                : "text-gray-800 hover:bg-gray-300 cursor-pointer"
+                : "bg-white text-gray-700 hover:bg-gray-100"
             )}
           >
             {tab.title}
