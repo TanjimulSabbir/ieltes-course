@@ -19,7 +19,7 @@ export default function Testimonials(props: {
   };
 
   return (
-    <div id="testimonials" className="mb-10 pb-20">
+    <div id="testimonials" className="mb-10 pb-20 overflow-scroll">
       <h2 className="mb-4 text-xl font-semibold">{data.name}</h2>
 
       <div className="relative">
