@@ -58,13 +58,13 @@ export default function CourseExclusiveFeatures(props: {
                 {/* Right content: Image or Video */}
                 <div>
                   {item.file_type === "image" ? (
-                    <div className="mb-4 mx-auto w-full mt-3 md:mt-0 md:max-w-[350px] transition-opacity duration-300 ease-in-out">
+                    <div className="mb-4 mx-auto mt-3 md:mt-0 md:max-w-[350px] transition-opacity duration-300 ease-in-out">
                       <img
                         src={item.file_url}
                         alt={item.title}
                         width={250}
                         height={200}
-                        className="w-full md:w-auto mx-auto"
+                        className="mx-auto"
                       />
                     </div>
                   ) : item.file_type === "video" ? (

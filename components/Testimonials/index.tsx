@@ -19,7 +19,7 @@ export default function Testimonials(props: {
   };
 
   return (
-    <div id="testimonials" className="mb-10 pb-20 overflow-scroll">
+    <div id="testimonials" className="mt-10 pb-10">
       <h2 className="mb-4 text-xl font-semibold">{data.name}</h2>
 
       <div className="relative">
@@ -79,7 +79,7 @@ export default function Testimonials(props: {
                             <Image
                               height={297}
                               width={372}
-                              src={item.thumb}
+                              src={item.thumb??""}
                               alt="Video thumbnail"
                               className="w-full h-full object-cover rounded-lg"
                             />

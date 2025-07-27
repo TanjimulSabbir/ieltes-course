@@ -103,7 +103,7 @@ export default function MediaCarousel({ media }: { media: Media[] }) {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[Thumbs, Navigation]}
-        className="mb-4"
+        className="mb-2"
       >
         {media.map((item, idx) => (
           <SwiperSlide key={`main-${idx}`}>
@@ -119,7 +119,7 @@ export default function MediaCarousel({ media }: { media: Media[] }) {
         slidesPerView="auto"
         watchSlidesProgress
         modules={[Thumbs]}
-        className="px-1"
+        className="px-4"
       >
         {media.map((item, idx) => {
           const isVideo = item.resource_type === "video";
@@ -129,7 +129,7 @@ export default function MediaCarousel({ media }: { media: Media[] }) {
           return (
             <SwiperSlide
               key={`thumb-${idx}`}
-              className={`!w-[60px] !h-[40px] rounded overflow-hidden border-2 transition-all ${
+              className={`!w-[60px] !h-[40px] z-50 rounded overflow-hidden border-2 transition-all ${
                 isActive ? "border-green-500" : "border-transparent"
               } cursor-pointer`}
               onClick={() => {
@@ -154,7 +154,7 @@ export default function MediaCarousel({ media }: { media: Media[] }) {
                 }
               }}
             >
-              <div className="relative w-full h-full ">
+              <div className="relative w-full h-full">
                 <Image
                   src={imageUrl || ""}
                   alt={`thumb-${idx}`}

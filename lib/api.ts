@@ -1,14 +1,25 @@
-import axios from "axios";
+export async function getStaticProps() {
+  const res = await fetch(
+    "https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=bn",
+    {
+      headers: {
+        "X-TENMS-SOURCE-PLATFORM": "web",
+      },
+    }
+  );
 
-export const api = axios.create({
-  baseURL: "https://api.10minuteschool.com/discovery-service/api/v1",
-  headers: {
-    "X-TENMS-SOURCE-PLATFORM": "web",
-    Accept: "application/json",
-  },
-});
+  if (!res.ok) {
+    return {
+      notFound: true,
+    };
+  }
 
-export const fetcher = async <T>(url: string): Promise<T> => {
-  const response = await api.get<T>(url);
-  return response.data;
-};
+  const json = await res.json();
+
+  return {
+    props: {
+      data: json.data || null,
+    },
+    revalidate: 60, // ISR: regenerate the page every 60 seconds
+  };
+}

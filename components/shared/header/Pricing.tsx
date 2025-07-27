@@ -1,3 +1,5 @@
+import MyButton from "@/components/UI/MyButton";
+
 export default function CoursePricing() {
   return (
     <div data-device-type="desktop">
@@ -27,9 +29,7 @@ export default function CoursePricing() {
             <div className="flex items-center justify-between mb-2"></div>
 
             {/* Buy Button */}
-            <button className="bg-green-600 text-white text-center px-4 py-2 rounded-md font-medium md:w-full whitespace-nowrap hover:bg-green-700 transition">
-              কোর্সটি কিনুন
-            </button>
+            <MyButton>কোর্সটি কিনুন</MyButton>
           </div>
 
           {/* Optional absolute positioned element */}
