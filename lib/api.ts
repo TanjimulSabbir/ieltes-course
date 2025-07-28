@@ -1,14 +1,15 @@
-import axios from "axios";
+export async function fetchCourseData(lang = "bn") {
+  const res = await fetch(
+    `https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=${lang}`,
+    {
+      headers: { "X-TENMS-SOURCE-PLATFORM": "web" },
+      next: { revalidate: 60 },
+    }
+  );
 
-export const api = axios.create({
-  baseURL: "https://api.10minuteschool.com/discovery-service/api/v1",
-  headers: {
-    "X-TENMS-SOURCE-PLATFORM": "web",
-    Accept: "application/json",
-  },
-});
+  if (!res.ok) {
+    throw new Error("Failed to fetch course data");
+  }
 
-export const fetcher = async <T>(url: string): Promise<T> => {
-  const response = await api.get<T>(url);
-  return response.data;
-};
+  return res.json();
+}

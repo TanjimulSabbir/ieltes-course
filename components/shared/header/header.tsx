@@ -1,12 +1,18 @@
 "use client";
 
-import { Media } from "@/types/types";
+import { Checklist, Media } from "@/types/types";
 import MediaCarousel from "./MediaCarousel";
+import Image from "next/image";
 
 export default function HeroSection({
   props,
 }: {
-  props: { title: string; description: string,media:Media[] };
+  props: {
+    title: string;
+    description: string;
+    media: Media[];
+    checklist: Checklist[];
+  };
 }) {
   return (
     <div
@@ -20,10 +26,13 @@ export default function HeroSection({
       <div
         id="skills-landing"
         data-label="div#skills-landing"
-        className="container max-w-screen-xl mx-auto flex flex-col justify-center min-h-[300px] md:min-h-[300px]"
+        className="container w-full max-w-screen-xl horizantal-padding mx-auto relative flex flex-col gap-4 md:flex-row md:gap-12 pb-6 md:py-10 md:min-h-[300px]"
       >
-        <div className="container relative flex flex-col gap-4 md:flex-row md:gap-12 pb-6 md:py-10 min-h-[300px]">
-          <div className="order-1 flex flex-col justify-center flex-1 md:order-1 md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
+        <div className="relative flex flex-col gap-4 md:flex-row md:gap-12 pb-6 md:py-10 md:min-h-[300px]">
+          <div className="w-full md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
+            <div className="block mt-5 mb-10 md:hidden">
+              <MediaCarousel media={props.media} />
+            </div>
             <h1
               className="text-white mb-2 text-[21px] font-semibold md:text-4xl"
               data-label="h1.text-white"
@@ -34,7 +43,7 @@ export default function HeroSection({
             <div className="mb-2">
               <button className="flex flex-row flex-wrap gap-2 text-white">
                 <span className="inline-block">
-                  <img
+                  <Image
                     className="md:w-[130px] w-[100px]"
                     src="https://cdn.10minuteschool.com/images/Dev_Handoff_Q1_24_Frame_2_1725444418666.png"
                     alt="Course Rating"
@@ -52,11 +61,11 @@ export default function HeroSection({
               dangerouslySetInnerHTML={{ __html: props.description }}
             />
           </div>
-          <div className="w-full md:max-w-[330px] lg:max-w-[400px] order-2  bg-white absolute right-0 md:top-[50px]">
-            <div className="md:sticky md:top-[112px] ">
-              <div className="md:border">
+          <div className="w-full md:max-w-[330px] lg:max-w-[400px] order-2 bg-white absolute h-full z-50 right-0 md:top-[50px]">
+            <div className="md:sticky md:top-[112px]">
+              <div className="md:border md:border-b-0">
                 <div className="hidden p-1 md:block">
-                  <MediaCarousel media={props.media} />
+                  <MediaCarousel media={[...props.media].reverse()} />
                 </div>
               </div>
             </div>

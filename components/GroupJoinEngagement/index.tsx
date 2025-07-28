@@ -3,6 +3,7 @@
 import { GroupJoinEngagementSection } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
+import MyButton from "../UI/MyButton";
 
 export default function GroupJoinEngagement(props: {
   props: { data: GroupJoinEngagementSection };
@@ -23,13 +24,9 @@ export default function GroupJoinEngagement(props: {
             <Image
               src={item.top_left_icon_img}
               alt="icon"
-              width={40}
-              height={40}
+              width={150}
+              height={150}
               className="mb-4"
-              style={{
-                height: "40px",
-                width: "auto",
-              }}
             />
 
             <h2
@@ -46,17 +43,11 @@ export default function GroupJoinEngagement(props: {
               {item.description}
             </p>
 
-            <Link href={item.cta.clicked_url} target="_blank">
-              <button
-                className="mt-6 button primary"
-                style={{
-                  backgroundColor: item.cta.color || "#fff",
-                  color: "#000",
-                }}
-              >
-                {item.cta.text}
-              </button>
-            </Link>
+            <div className="mt-5">
+              <Link href={item.cta.clicked_url} target="_blank">
+                <MyButton>{item.cta.text}</MyButton>
+              </Link>
+            </div>
           </div>
 
           {/* Right Image */}

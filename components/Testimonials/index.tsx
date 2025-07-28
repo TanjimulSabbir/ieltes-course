@@ -13,13 +13,19 @@ export default function Testimonials(props: {
 }) {
   const { data } = props.props;
   const [playing, setPlaying] = useState<Record<string, boolean>>({});
+  const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
 
   const handlePlay = (id: string) => {
     setPlaying((prev) => ({ ...prev, [id]: true }));
   };
-
+  const toggleExpand = (id: string) => {
+    setExpandedMap((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
   return (
-    <div id="testimonials" className="mb-10 pb-20">
+    <div id="testimonials" className="mt-10 pb-10">
       <h2 className="mb-4 text-xl font-semibold">{data.name}</h2>
 
       <div className="relative">
@@ -30,9 +36,9 @@ export default function Testimonials(props: {
           modules={[Navigation]}
           className="overflow-visible"
         >
-          {data.values.map((item) => {
+          {data?.values?.map((item) => {
             const isPlaying = playing[item.id];
-            const [expanded, setExpanded] = useState(false);
+            const isExpanded = expandedMap[item.id];
             return (
               <SwiperSlide
                 key={item.id}
@@ -74,43 +80,42 @@ export default function Testimonials(props: {
                       />
                     ) : (
                       <>
-                        {item.thumb !== "" ? (
-                          <div className="relative">
+                        {item.profile_image && item.thumb !== "" ? (
+                          <div className="relative h-full">
                             <Image
                               height={297}
                               width={372}
-                              src={item.thumb}
+                              src={item.profile_image}
                               alt="Video thumbnail"
                               className="w-full h-full object-cover rounded-lg"
                             />
-                            <button
-                              onClick={() => handlePlay(item.id)}
-                              className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-                            >
-                              <Image
-                                src="https://10minuteschool.com/images/annual_exam/play_icon_2.svg"
-                                alt="Play"
-                                width={70}
-                                height={70}
-                                className="max-w-[20vw]"
-                              />
-                            </button>
+                            <div className="absolute h-full inset-0 flex items-center justify-center">
+                              <button onClick={() => handlePlay(item.id)}>
+                                <Image
+                                  src="https://10minuteschool.com/images/annual_exam/play_icon_2.svg"
+                                  alt="Play"
+                                  width={70}
+                                  height={70}
+                                  className="max-w-[20vw] cursor-pointer"
+                                />
+                              </button>
+                            </div>
                           </div>
                         ) : (
                           <div className="relative p-4 w-full h-full scrollbar-hide overflow-y-scroll bg-gray-100 rounded-lg text-gray-800 text-sm leading-relaxed">
                             <p
                               className={`${
-                                expanded ? "" : "line-clamp-4"
+                                isExpanded ? "" : "line-clamp-4"
                               } transition-all duration-300`}
                             >
                               {item.testimonial}
                             </p>
 
                             <button
-                              onClick={() => setExpanded(!expanded)}
+                              onClick={() => toggleExpand(item.id)}
                               className="absolute bottom-2 right-2 bg-white text-blue-600 text-xs px-3 py-1 rounded shadow cursor-pointer hover:underline"
                             >
-                              {expanded ? "Show Less" : "See More"}
+                              {isExpanded ? "Show Less" : "See More"}
                             </button>
                           </div>
                         )}
