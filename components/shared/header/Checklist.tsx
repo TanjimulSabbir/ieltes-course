@@ -1,5 +1,6 @@
 
 import { Checklist } from '@/types/types'
+import Image from 'next/image';
 import React from 'react'
 
 export default function CheckList(props:{props:{data:Checklist[]}}) {
@@ -14,7 +15,7 @@ export default function CheckList(props:{props:{data:Checklist[]}}) {
               className="flex items-center mb-3 leading-5 transition-opacity duration-300 ease-in-out"
             >
               <div className="inline-block h-[20px] w-[20px]">
-                <img
+                <Image
                   src={item.icon}
                   alt="icon"
                   width={20}

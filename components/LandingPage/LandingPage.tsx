@@ -1,7 +1,6 @@
 "use client";
 import { mapSectionsByType } from "@/data/data";
 import { CourseData } from "@/types/types";
-import { log } from "console";
 import { useEffect, useState } from "react";
 import About from "../About";
 import CourseExclusiveFeatures from "../CourseExclusiveFeatures";

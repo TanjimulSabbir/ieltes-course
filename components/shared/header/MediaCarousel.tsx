@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType } from "swiper";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -14,8 +15,8 @@ import { Media } from "@/types/types";
 
 
 export default function MediaCarousel({ media }: { media: Media[] }) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-  const [mainSwiper, setMainSwiper] = useState<any>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+  const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
 

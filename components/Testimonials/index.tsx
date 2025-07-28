@@ -13,11 +13,17 @@ export default function Testimonials(props: {
 }) {
   const { data } = props.props;
   const [playing, setPlaying] = useState<Record<string, boolean>>({});
+  const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
 
   const handlePlay = (id: string) => {
     setPlaying((prev) => ({ ...prev, [id]: true }));
   };
-
+  const toggleExpand = (id: string) => {
+    setExpandedMap((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
   return (
     <div id="testimonials" className="mt-10 pb-10">
       <h2 className="mb-4 text-xl font-semibold">{data.name}</h2>
@@ -32,7 +38,7 @@ export default function Testimonials(props: {
         >
           {data?.values?.map((item) => {
             const isPlaying = playing[item.id];
-            const [expanded, setExpanded] = useState(false);
+            const isExpanded = expandedMap[item.id];
             return (
               <SwiperSlide
                 key={item.id}
@@ -99,17 +105,17 @@ export default function Testimonials(props: {
                           <div className="relative p-4 w-full h-full scrollbar-hide overflow-y-scroll bg-gray-100 rounded-lg text-gray-800 text-sm leading-relaxed">
                             <p
                               className={`${
-                                expanded ? "" : "line-clamp-4"
+                                isExpanded ? "" : "line-clamp-4"
                               } transition-all duration-300`}
                             >
                               {item.testimonial}
                             </p>
 
                             <button
-                              onClick={() => setExpanded(!expanded)}
+                              onClick={() => toggleExpand(item.id)}
                               className="absolute bottom-2 right-2 bg-white text-blue-600 text-xs px-3 py-1 rounded shadow cursor-pointer hover:underline"
                             >
-                              {expanded ? "Show Less" : "See More"}
+                              {isExpanded ? "Show Less" : "See More"}
                             </button>
                           </div>
                         )}

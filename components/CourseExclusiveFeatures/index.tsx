@@ -1,4 +1,5 @@
 import { FeatureExplanationsSection } from "@/types/types";
+import Image from "next/image";
 import React from "react";
 
 export default function CourseExclusiveFeatures(props: {
@@ -59,7 +60,7 @@ export default function CourseExclusiveFeatures(props: {
                 <div>
                   {item.file_type === "image" ? (
                     <div className="mb-4 mx-auto mt-3 md:mt-0 md:max-w-[350px] transition-opacity duration-300 ease-in-out">
-                      <img
+                      <Image
                         src={item.file_url}
                         alt={item.title}
                         width={250}
