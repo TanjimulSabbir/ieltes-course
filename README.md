@@ -70,7 +70,7 @@ X-TENMS-SOURCE-PLATFORM: web
 ####  1. Clone Repository
 
 ```
-git clone https://github.com/your-username/ielts-course-landing.git
+git clone https://github.com/TanjimulSabbir/ielts-course.git
 ```
 
 ```
