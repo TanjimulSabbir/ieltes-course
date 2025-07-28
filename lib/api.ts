@@ -1,25 +1,15 @@
-export async function getStaticProps() {
+export async function fetchCourseData(lang = "bn") {
   const res = await fetch(
-    "https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=bn",
+    `https://api.10minuteschool.com/discovery-service/api/v1/products/ielts-course?lang=${lang}`,
     {
-      headers: {
-        "X-TENMS-SOURCE-PLATFORM": "web",
-      },
+      headers: { "X-TENMS-SOURCE-PLATFORM": "web" },
+      next: { revalidate: 60 },
     }
   );
 
   if (!res.ok) {
-    return {
-      notFound: true,
-    };
+    throw new Error("Failed to fetch course data");
   }
 
-  const json = await res.json();
-
-  return {
-    props: {
-      data: json.data || null,
-    },
-    revalidate: 60, // ISR: regenerate the page every 60 seconds
-  };
+  return res.json();
 }

@@ -19,7 +19,7 @@ export interface CourseData {
   start_at: string;
   media: Media[];
   checklist: Checklist[];
-  seo: any[];
+  seo: SeoValue;
   cta_text: CtaText;
   sections: AllSections[];
   is_cohort_based_course: boolean;
@@ -139,7 +139,7 @@ export interface PointerValue {
   text: string;
 }
 export interface AboutValue {
-  description: string; // HTML string
+  description: string; 
   icon: string;
   id: string;
   title: string;
@@ -158,7 +158,7 @@ export interface TestimonialValue {
   description: string;
   profile_image: string;
   testimonial: string;
-  thumb: string;
+  thumb?: string;
   video_type: string;
   video_url: string;
 }
@@ -167,6 +167,25 @@ export interface FrequentlyAskedQuestionValue {
   answer: string; // HTML string
   id: string;
   question: string;
+}
+export interface SeoValue {
+  title: string;
+  description: string;
+  keywords: string[];
+  defaultMeta: MetaTag[];
+  schema: SchemaItem[];
+}
+
+export interface MetaTag {
+  content: string;
+  type: "property" | "name";
+  value: string;
+}
+
+export interface SchemaItem {
+  meta_name: "ld-json";
+  meta_value: string;
+  type: "ld-json";
 }
 
 // Specific typed sections
@@ -189,11 +208,10 @@ export type FrequentlyAskedQuestionSection = BaseSection<
   FrequentlyAskedQuestionValue,
   "faq"
 >;
+
 export type ContentPreviewSection = BaseSection<[], "content_preview">;
 export type FreeItemsSection = BaseSection<[], "free_items">;
 export type CertificateSection = BaseSection<[], "certificate">;
 export type BundleCertificateSection = BaseSection<[], "bundle_certificate">;
 export type RequirementSection = BaseSection<[], "requirements">;
 export type HowToPaySection = BaseSection<[], "how_to_pay">;
-
-
