@@ -30,7 +30,7 @@ export default function HeroSection({
       >
         <div className="relative flex flex-col gap-4 md:flex-row md:gap-12 pb-6 md:py-10 md:min-h-[300px]">
           <div className="w-full md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
-            <div className="block mt-5 mb-10 md:hidden">
+            <div className="mt-5 mb-10 md:hidden">
               <MediaCarousel media={props.media} />
             </div>
             <h1
@@ -47,6 +47,8 @@ export default function HeroSection({
                     className="md:w-[130px] w-[100px]"
                     src="https://cdn.10minuteschool.com/images/Dev_Handoff_Q1_24_Frame_2_1725444418666.png"
                     alt="Course Rating"
+                    height={20}
+                    width={130}
                   />
                 </span>
                 <span className="inline-block text-sm md:text-base">
@@ -61,7 +63,7 @@ export default function HeroSection({
               dangerouslySetInnerHTML={{ __html: props.description }}
             />
           </div>
-          <div className="w-full md:max-w-[330px] lg:max-w-[400px] order-2 bg-white absolute h-full z-50 right-0 md:top-[50px]">
+          <div className="hidden md:block w-full md:max-w-[330px] lg:max-w-[400px] order-2 bg-white absolute h-full z-50 right-0 md:top-[50px]">
             <div className="md:sticky md:top-[112px]">
               <div className="md:border md:border-b-0">
                 <div className="hidden p-1 md:block">
